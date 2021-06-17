@@ -4,7 +4,7 @@ import { deletetodo, toggleDoneTodo } from '../../store/reducers/todosReducer'
 
 const Todos = () => {
   const todos = useSelector((state) => state.todos.items)
-  const filter = useSelector((state) => state.filterReducer.filter)
+  const filter = useSelector((state) => state.filterReducer)
 
   const dispatch = useDispatch()
 
