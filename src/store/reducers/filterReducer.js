@@ -1,22 +1,41 @@
 const initialFilter = {
-  filter: 'All',
+  filter: 'ALL',
 }
 
-const CHANGEFILTER = 'CHANGEFILTER'
+const ALL = 'ALL'
+const ACTIVE = 'ACTIVE'
+const DONE = 'DONE'
 
-export const changeFilter = (filter) => {
-  return {
-    type: CHANGEFILTER,
-    payload: filter,
-  }
-}
+export const filterAll = () => ({
+  type: ALL,
+})
+
+export const filterActive = () => ({
+  type: ACTIVE,
+})
+
+export const filterDone = () => ({
+  type: DONE,
+})
 
 const filterReducer = (state = initialFilter, action) => {
   switch (action.type) {
-    case CHANGEFILTER: {
+    case ALL: {
       return {
         ...state,
-        filter: action.payload,
+        filter: ALL,
+      }
+    }
+    case ACTIVE: {
+      return {
+        ...state,
+        filter: ACTIVE,
+      }
+    }
+    case DONE: {
+      return {
+        ...state,
+        filter: DONE,
       }
     }
     default: {

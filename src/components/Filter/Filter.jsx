@@ -1,21 +1,34 @@
 import { Button } from 'antd'
-import { changeFilter } from '../../store/reducers/filterReducer'
 import { useDispatch } from 'react-redux'
+import {
+  filterActive,
+  filterAll,
+  filterDone,
+} from '../../store/reducers/filterReducer'
 
 const Filter = () => {
   const dispatch = useDispatch()
-  const onChangeFilter = (filter) => {
-    dispatch(changeFilter(filter))
+
+  const onFilterAll = () => {
+    dispatch(filterAll())
+  }
+
+  const onFilterActive = () => {
+    dispatch(filterActive())
+  }
+
+  const onFilterDone = () => {
+    dispatch(filterDone())
   }
 
   return (
     <>
-      <label>Show </label>
-      <Button type="primary" onClick={() => onChangeFilter('All')}>
+      <label>Show: </label>
+      <Button type="primary" onClick={onFilterAll}>
         All
       </Button>
-      <Button onClick={() => onChangeFilter('Active')}>Active</Button>
-      <Button onClick={() => onChangeFilter('Done')}>Done</Button>
+      <Button onClick={onFilterActive}>Active</Button>
+      <Button onClick={onFilterDone}>Done</Button>
     </>
   )
 }
