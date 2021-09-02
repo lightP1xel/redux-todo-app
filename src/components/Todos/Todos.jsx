@@ -18,14 +18,15 @@ const Todos = () => {
   }
 
   const filteredTodos = () => {
-    if (filter === 'ALL') {
-      return todos
-    }
-    if (filter === 'ACTIVE') {
-      return todos.filter((item) => item.isDone === false)
-    }
-    if (filter === 'DONE') {
-      return todos.filter((item) => item.isDone === true)
+    switch(filter) {
+      case 'ALL':
+        return todos
+      case 'ACTIVE':
+        return todos.filter((item) => !item.isDone)
+      case 'DONE':
+        return todos.filter(({isDone}) => isDone)
+      default:
+        alert('fwef')
     }
   }
 

@@ -1,5 +1,6 @@
 import { Button } from 'antd'
 import { useDispatch } from 'react-redux'
+import style from './style.module.css'
 import {
   filterActive,
   filterAll,
@@ -23,7 +24,7 @@ const Filter = () => {
 
   return (
     <>
-      <label>Show: </label>
+      <h1 className={style.filterHeading}>Show: </h1>
       <Button type="primary" onClick={onFilterAll}>
         All
       </Button>
