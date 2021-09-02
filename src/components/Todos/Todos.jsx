@@ -26,7 +26,7 @@ const Todos = () => {
       case 'DONE':
         return todos.filter(({isDone}) => isDone)
       default:
-        alert('fwef')
+        alert('')
     }
   }
 
