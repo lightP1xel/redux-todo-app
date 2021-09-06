@@ -6,7 +6,7 @@ import { useState } from 'react'
 const AddTodo = () => {
   const [name, setName] = useState('')
   const dispatch = useDispatch()
-  const onAddTodo = () => {
+  const handleAddTodo = () => {
     dispatch(addtodo(name))
     setName('')
   }
@@ -18,7 +18,7 @@ const AddTodo = () => {
       <Form.Item label="Add todo for today">
         <Input value={name} onChange={onChangeName} />
       </Form.Item>
-      <Button type="primary" onClick={onAddTodo}>
+      <Button type="primary" onClick={handleAddTodo}>
         Add
       </Button>
     </Form>

@@ -10,26 +10,26 @@ import {
 const Filter = () => {
   const dispatch = useDispatch()
 
-  const onFilterAll = () => {
+  const showAllTodos = () => {
     dispatch(filterAll())
   }
 
-  const onFilterActive = () => {
+  const showActiveTodos = () => {
     dispatch(filterActive())
   }
 
-  const onFilterDone = () => {
+  const showDoneTodos = () => {
     dispatch(filterDone())
   }
 
   return (
     <>
-      <h1 className={style.filterHeading}>Show: </h1>
-      <Button type="primary" onClick={onFilterAll}>
+      <h1 className={style.title}>Show: </h1>
+      <Button type="primary" onClick={showAllTodos}>
         All
       </Button>
-      <Button onClick={onFilterActive}>Active</Button>
-      <Button onClick={onFilterDone}>Done</Button>
+      <Button onClick={showActiveTodos}>Active</Button>
+      <Button onClick={showDoneTodos}>Done</Button>
     </>
   )
 }

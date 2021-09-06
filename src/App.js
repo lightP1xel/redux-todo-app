@@ -3,7 +3,7 @@ import Filter from './components/Filter'
 import AddTodo from './components/AddTodo'
 import Todos from './components/Todos'
 
-export default function App() {
+const App = () => {
   return (
     <div className="App">
       <Filter />
@@ -14,3 +14,5 @@ export default function App() {
     </div>
   )
 }
+
+export default App
