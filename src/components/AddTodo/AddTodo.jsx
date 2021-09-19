@@ -1,12 +1,13 @@
-import { Form, Input, Button } from 'antd'
 import { useDispatch } from 'react-redux'
 import { addtodo } from '../../store/reducers/todosReducer'
 import { useState } from 'react'
+import { Button, Input } from 'antd'
 
 const AddTodo = () => {
   const [name, setName] = useState('')
   const dispatch = useDispatch()
-  const handleAddTodo = () => {
+  const handleAddTodo = (e) => {
+    e.preventDefault()
     dispatch(addtodo(name))
     setName('')
   }
@@ -14,14 +15,10 @@ const AddTodo = () => {
     setName(event.target.value)
   }
   return (
-    <Form layout="inline">
-      <Form.Item label="Add todo for today">
-        <Input value={name} onChange={onChangeName} />
-      </Form.Item>
-      <Button type="primary" onClick={handleAddTodo}>
-        Add
-      </Button>
-    </Form>
+    <form style={{margin: '10px'}}>
+      <Input style={{width: '200px'}} type="text" value={name} onChange={onChangeName}/>
+      <Button style={{marginLeft: '20px'}} onClick={handleAddTodo}>Add task</Button>
+    </form>
   )
 }
 

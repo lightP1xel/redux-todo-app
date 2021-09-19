@@ -19,12 +19,12 @@ const Todos = () => {
 
   const filteredTodos = () => {
     switch(filter) {
-      case 'ALL':
-        return todos
       case 'ACTIVE':
         return todos.filter((item) => !item.isDone)
       case 'DONE':
         return todos.filter(({isDone}) => isDone)
+      default:
+        return todos
     }
   }
 
