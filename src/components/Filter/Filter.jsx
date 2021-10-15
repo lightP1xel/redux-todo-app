@@ -22,12 +22,18 @@ const Filter = () => {
     dispatch(filterDone())
   }
 
+  const filterButtons = [
+    {id: 1, buttonName: 'All', buttonFunction: showAllTodos},
+    {id: 2, buttonName: 'Active', buttonFunction: showActiveTodos},
+    {id: 3, buttonName: 'Done', buttonFunction: showDoneTodos},
+  ]
+
   return (
     <div className={style.wrapper}>
       <h1 className={style.title}>Show todos: </h1>
-      <Button onClick={showAllTodos}>All</Button>
-      <Button style={{margin: '0px 20px'}} onClick={showActiveTodos}>Active</Button>
-      <Button onClick={showDoneTodos}>Done</Button>
+      {filterButtons.map((item)=> {
+        return <Button key={item.id} onClick={item.buttonFunction}>{item.buttonName}</Button>
+      })}
     </div>
   )
 }

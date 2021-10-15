@@ -1,3 +1,3 @@
-import AddTodo from './AddTodo'
+import AddTodo from '../../pages/AddTodo'
 
 export default AddTodo
