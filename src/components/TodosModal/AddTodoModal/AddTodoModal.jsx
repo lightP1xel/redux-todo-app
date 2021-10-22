@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { useContext } from 'react'
+import { useContext, useCallback } from 'react'
 import { addtodo } from '../../../store/export'
 import { Button, Input, Form, Modal } from 'antd'
-import { NotificationProvider } from '../..'
+import { NotificationProvider } from '../../NotificationProvider'
 import { useHistory } from 'react-router'
 import { TodoModalFooter } from '../ModalWithId/TodoModalFooter'
 
@@ -16,7 +16,7 @@ export const AddTodoModal = () => {
   const { notify } = useContext(NotificationProvider)
   const history = useHistory()
 
-  const onFinish = ({ title, description }) => {
+  const onFinish = useCallback(({ title, description }) => {
     const successAdd = dispatch(addtodo(
       {
         title: title,
@@ -34,7 +34,7 @@ export const AddTodoModal = () => {
         }
       )
     }
-  }
+  }, [dispatch, form, history, notify])
 
 const createField = (name, label) => {
   return (
@@ -54,13 +54,13 @@ const createField = (name, label) => {
 
   return (
     <Modal title="Add todo" visible footer={<TodoModalFooter />}>
-              <Form onFinish={onFinish} form={form}>
-                  {createField('title', 'Title')}
-                  {createField('description', 'Description')}
-                <Form.Item>
-                  <Button type='primary' htmlType='submit'>Add TODO</Button>
-                </Form.Item>
-              </Form>
-        </Modal>
+      <Form onFinish={onFinish} form={form}>
+        {createField('title', 'Title')}
+        {createField('description', 'Description')}
+        <Form.Item>
+          <Button type='primary' htmlType='submit'>Add TODO</Button>
+        </Form.Item>
+      </Form>
+    </Modal>
   )
 }

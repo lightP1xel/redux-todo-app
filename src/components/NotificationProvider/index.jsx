@@ -4,12 +4,12 @@ import { notification } from 'antd'
 export const NotificationProvider = React.createContext()
 
 export const Notification = ({ children }) => {
-  const notify = useCallback(({ message, description, duration }) => {
+  const notify = useCallback(({ message, description, duration = 5 }) => {
     notification.open(
       {
-        message: message,
-        description: description,
-        duration: duration,
+        message,
+        description,
+        duration,
       }
     )
   }, []

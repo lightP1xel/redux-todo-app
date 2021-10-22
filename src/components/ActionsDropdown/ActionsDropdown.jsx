@@ -1,48 +1,45 @@
-import React, { useContext } from 'react'
+import React, { useCallback, useContext, useMemo } from 'react'
 import { Menu, Dropdown, Button } from 'antd'
 import { useHistory } from 'react-router'
 import { deletetodo, toggleDoneTodo } from '../../store/reducers/todosReducer'
 import { useDispatch } from 'react-redux'
 import { NotificationProvider } from '../NotificationProvider'
 
-export const ActionsDropdown = ({ id, match, openEditingModal }) => {
+export const ActionsDropdown = ({ id, match }) => {
   const history = useHistory()
   const dispatch = useDispatch()
   const { notify } = useContext(NotificationProvider)
 
-  const onDeleteTodo = (id) => {
-    const successDelete = dispatch(deletetodo(id))
-    if (successDelete) {
+  const onDeleteTodo = useCallback((id) => {
+    const isDeleted = dispatch(deletetodo(id))
+    if (isDeleted) {
       notify(
         {
           message: 'Your todo',
           description: 'You have deleted the todo.',
-          duration: 5,
         }
       )
     }
-  }
+  }, [dispatch, notify])
 
-  const onToggleTodo = (id) => {
-    const successToggle = dispatch(toggleDoneTodo(id))
-    if (successToggle) {
+  const onToggleTodo = useCallback((id) => {
+    const isToggled = dispatch(toggleDoneTodo(id))
+    if (isToggled) {
       notify(
         {
           message: 'Your todo',
           description: 'You have moved the task.',
-          duration: 5,
         }
       )
     }
-  }
+  }, [dispatch, notify])
 
-  const menu = (
+  const menu = useMemo(() => 
     <Menu>
       <Menu.Item key="1"><Button onClick={() => onToggleTodo(id)}>Switch todo</Button></Menu.Item>
       <Menu.Item key="2"><Button onClick={() => history.push(`${match}/${id}`)}>More info</Button></Menu.Item>
-      <Menu.Item key="4"><Button danger onClick={() => onDeleteTodo(id)}>Delete</Button></Menu.Item>
-    </Menu>
-  )
+      <Menu.Item key="3"><Button danger onClick={() => onDeleteTodo(id)}>Delete</Button></Menu.Item>
+    </Menu>, [history, id, match, onToggleTodo, onDeleteTodo])
 
   return (
     <Dropdown trigger={['click']} overlay={menu}>

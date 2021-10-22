@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import { getTodos } from '../../../store/selectors/selectors'
 import style from './style.module.css'
 
-export const TodoModal = ({ handleCancel }) => {
+export const TodoModal = () => {
   const params = useParams()
   const todos = useSelector(getTodos)
 
@@ -14,7 +14,7 @@ export const TodoModal = ({ handleCancel }) => {
 
   return (
     <>
-      <Modal title={todo.title} visible footer={<TodoModalFooter onClick={handleCancel}/>}>
+      <Modal title={todo.title} visible footer={<TodoModalFooter />}>
         <>
           <p>Description: { todo.description }</p>
           <p className={style.todoTime}>{ todo.timeOfCreate }</p>
