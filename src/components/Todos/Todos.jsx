@@ -6,10 +6,10 @@ import { ActionsDropdown } from '../ActionsDropdown/ActionsDropdown'
 
 
 
-const Todos = ({ match }) => {
+export const Todos = ({ match }) => {
   const todos = useSelector(getTodos)
   const filter = useSelector(getFilter)
-  
+
   const filteredTodos = useCallback(() => {
     switch(filter) {
       case 'ACTIVE':
@@ -23,7 +23,6 @@ const Todos = ({ match }) => {
 
   const dataSource = [
     ...filteredTodos().map((todo) => {
-      console.log(todo)
       return {
         id: todo.id,
         title: todo.title,
@@ -51,23 +50,15 @@ const Todos = ({ match }) => {
       title: 'Actions', 
       key: 'actions', 
       dataIndex: 'actions',
-      render: (_, { id }) => <ActionsDropdown id={id} match={match}/>
+      render: (_, { id }) => <ActionsDropdown id={id} match={match} />
     },
   ]
 
-  const bottomOptions = [
-    { label: 'bottomLeft', value: 'bottomLeft' },
-    { label: 'bottomCenter', value: 'bottomCenter' },
-    { label: 'bottomRight', value: 'bottomRight' },
-    { label: 'none', value: 'none' },
-  ];
-
   return (
-      <Table 
-      dataSource={dataSource} 
-      columns={columns} 
-      pagination = {{ defaultPageSize: '5', showSizeChanger: true, pageSizeOptions: [5, 10, 15, 20], position: ['bottomCenter'] }}/>
+      <Table
+        dataSource={dataSource} 
+        columns={columns} 
+        pagination = {{ defaultPageSize: '5', showSizeChanger: true, pageSizeOptions: [5, 10, 15, 20], position: ['bottomCenter'] }}
+      />
   )
 }
-
-export default Todos

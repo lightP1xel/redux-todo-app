@@ -1,14 +1,11 @@
-import {React, useState} from 'react'
+import { React } from 'react'
 import { Button } from 'antd'
 import { useHistory } from 'react-router'
 
 export const TodoModalFooter = () => {
   const history = useHistory()
-  const [isModalVisible, setIsModalVisible] = useState(true)
-  
 
   const handleCancel = () => {
-    setIsModalVisible(false)
     history.goBack()
   }
 

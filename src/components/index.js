@@ -1,0 +1,8 @@
+export { NavBar } from '../components/NavBar/index'
+export { Filter } from '../components/Filter/Filter'
+export { AddTodo } from '../components/AddTodo/AddTodo'
+export { Todos } from '../components/Todos/Todos'
+export { TodoModal } from './TodosModal/ModalWithId/TodoModal'
+export { Notification } from '../components/NotificationProvider/index'
+export { NotificationProvider } from '../components/NotificationProvider/index'
+export { Modals } from '../components/TodosModal/Modals'
