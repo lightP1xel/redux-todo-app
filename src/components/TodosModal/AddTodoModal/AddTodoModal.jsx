@@ -16,7 +16,7 @@ export const AddTodoModal = () => {
   const { notify } = useContext(NotificationProvider)
   const history = useHistory()
 
-  const onFinish = useCallback(({ title, description }) => {
+  const handleFinish = useCallback(({ title, description }) => {
     const successAdd = dispatch(addtodo(
       {
         title: title,
@@ -54,7 +54,7 @@ const createField = (name, label) => {
 
   return (
     <Modal title="Add todo" visible footer={<TodoModalFooter />}>
-      <Form onFinish={onFinish} form={form}>
+      <Form onFinish={handleFinish} form={form}>
         {createField('title', 'Title')}
         {createField('description', 'Description')}
         <Form.Item>

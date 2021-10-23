@@ -13,7 +13,7 @@ export const NavBar = () => {
 
   return (
     <div className={style.wrapper}>
-      {navigationButtons.map(({id, to, title}) => <Link className={style.link} key={id} to={to}>{title}</Link>)}
+      {navigationButtons.map(({ title, ...rest}) => <Link className={style.link} {...rest}>{title}</Link>)}
     </div>
   )
 }
