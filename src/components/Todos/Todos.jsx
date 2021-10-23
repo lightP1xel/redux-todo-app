@@ -1,52 +1,64 @@
-import { List, Typography, Button } from 'antd'
-import { useSelector, useDispatch } from 'react-redux'
-import { deletetodo, toggleDoneTodo } from '../../store/reducers/todosReducer'
+import { useCallback } from 'react'
+import { Table, Popover } from 'antd'
+import { useSelector } from 'react-redux'
 import { getFilter, getTodos } from '../../store/selectors/selectors'
+import { ActionsDropdown } from '../ActionsDropdown/ActionsDropdown'
 
-const Todos = () => {
+
+
+export const Todos = ({ match }) => {
   const todos = useSelector(getTodos)
   const filter = useSelector(getFilter)
 
-  const dispatch = useDispatch()
-
-  const onDeleteTodo = (id) => {
-    dispatch(deletetodo(id))
-  }
-
-  const onToggleTodo = (id) => {
-    dispatch(toggleDoneTodo(id))
-  }
-
-  const filteredTodos = () => {
+  const filteredTodos = useCallback(() => {
     switch(filter) {
-      case 'ALL':
-        return todos
       case 'ACTIVE':
         return todos.filter((item) => !item.isDone)
       case 'DONE':
         return todos.filter(({isDone}) => isDone)
+      default:
+        return todos
     }
-  }
+  }, [filter, todos])
+
+  const dataSource = [
+    ...filteredTodos().map((todo) => {
+      return {
+        id: todo.id,
+        title: todo.title,
+        description: todo.description,
+        timeOfCreate: todo.timeOfCreate,
+      }
+    }
+    )
+  ]
+
+  const columns = [
+    {
+      title: 'Title', 
+      key: 'title', 
+      dataIndex: 'title',
+      sorter: (a, b) => a.title - b.title,
+      render: ( title, { timeOfCreate }) => <Popover content={ `Time of create: ${timeOfCreate}` } title={title}>{title}</Popover>,
+    },
+    {
+      title: 'Description', 
+      key: 'description', 
+      dataIndex: 'description',
+    },
+    {
+      title: 'Actions', 
+      key: 'actions', 
+      dataIndex: 'actions',
+      render: (_, { id }) => <ActionsDropdown id={id} match={match} />
+    },
+  ]
 
   return (
-    <List
-      dataSource={filteredTodos()}
-      bordered
-      renderItem={(item) => (
-        <List.Item>
-          <Typography.Text delete={item.isDone}>{item.name}</Typography.Text>
-          <div>
-            <Button onClick={() => onToggleTodo(item.id)}>
-              {item.isDone ? 'Undo' : 'Done'}
-            </Button>
-            <Button danger onClick={() => onDeleteTodo(item.id)}>
-              Delete
-            </Button>
-          </div>
-        </List.Item>
-      )}
-    />
+      <Table
+        dataSource={dataSource} 
+        columns={columns} 
+        pagination = {{ defaultPageSize: '5', showSizeChanger: true, pageSizeOptions: [5, 10, 15, 20], position: ['bottomCenter'] }}
+      />
   )
 }
-
-export default Todos

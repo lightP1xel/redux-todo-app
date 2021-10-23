@@ -1,3 +1,7 @@
+import { nanoid } from "nanoid"
+
+const size = 8
+
 const initialState = {
   items: [],
 }
@@ -31,8 +35,10 @@ const todosReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADDTODO: {
       const newTodo = {
-        id: new Date().valueOf().toString(),
-        name: action.payload,
+        id: nanoid(size),
+        timeOfCreate: new Date().toLocaleString(),
+        title: action.payload.title,
+        description: action.payload.description,
         isDone: false,
       }
       return {

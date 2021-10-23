@@ -1,28 +1,12 @@
-import { Form, Input, Button } from 'antd'
-import { useDispatch } from 'react-redux'
-import { addtodo } from '../../store/reducers/todosReducer'
-import { useState } from 'react'
+import React from 'react'
+import { Button } from 'antd'
+import { useHistory } from 'react-router'
 
-const AddTodo = () => {
-  const [name, setName] = useState('')
-  const dispatch = useDispatch()
-  const handleAddTodo = () => {
-    dispatch(addtodo(name))
-    setName('')
-  }
-  const onChangeName = (event) => {
-    setName(event.target.value)
-  }
+export const AddTodo = () => {
+const history = useHistory()
   return (
-    <Form layout="inline">
-      <Form.Item label="Add todo for today">
-        <Input value={name} onChange={onChangeName} />
-      </Form.Item>
-      <Button type="primary" onClick={handleAddTodo}>
-        Add
-      </Button>
-    </Form>
+    <>
+      <Button onClick={() => history.push('/todos/create-todo')}>Add Todo</Button>         
+    </>
   )
 }
-
-export default AddTodo

@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid black;
+  background: lightgray;
+}
+
+.link {
+  color: black;
+  padding: 10px;
+  margin: 20px;
+  font-size: 20px;
+}

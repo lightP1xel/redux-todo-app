@@ -1,13 +1,9 @@
 import { Button } from 'antd'
 import { useDispatch } from 'react-redux'
 import style from './style.module.css'
-import {
-  filterActive,
-  filterAll,
-  filterDone,
-} from '../../store/reducers/filterReducer'
+import { filterActive, filterAll, filterDone } from '../../store/export'
 
-const Filter = () => {
+export const Filter = () => {
   const dispatch = useDispatch()
 
   const showAllTodos = () => {
@@ -22,16 +18,16 @@ const Filter = () => {
     dispatch(filterDone())
   }
 
+  const filterButtons = [
+    {key: 1, buttonName: 'All', action: showAllTodos},
+    {key: 2, buttonName: 'Active', action: showActiveTodos},
+    {key: 3, buttonName: 'Done', action: showDoneTodos},
+  ]
+
   return (
-    <>
-      <h1 className={style.title}>Show: </h1>
-      <Button type="primary" onClick={showAllTodos}>
-        All
-      </Button>
-      <Button onClick={showActiveTodos}>Active</Button>
-      <Button onClick={showDoneTodos}>Done</Button>
-    </>
+    <div className={style.wrapper}>
+      <h1 className={style.title}>Show todos: </h1>
+      {filterButtons.map(({ key, buttonName, action }) => <Button key={key} onClick={action}>{buttonName}</Button>)}
+    </div>
   )
 }
-
-export default Filter

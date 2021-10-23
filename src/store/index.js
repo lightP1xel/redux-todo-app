@@ -1,4 +1,8 @@
-import { createStore } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import rootReducer from './reducers'
+import { middleware } from './middleware'
 
-export const store = createStore(rootReducer)
+const enhancer = composeWithDevTools(applyMiddleware(middleware))
+
+export const store = createStore(rootReducer, JSON.parse(localStorage.getItem('state')) || undefined, enhancer)
