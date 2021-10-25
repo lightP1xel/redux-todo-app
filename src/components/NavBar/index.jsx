@@ -8,7 +8,6 @@ export const NavBar = () => {
     {id: 1, to: '/', title: 'Home'},
     {id: 2, to: '/about', title: 'About'},
     {id: 3, to: '/todos', title: 'Todos'},
-    {id: 4, to: '/APITodos', title: 'API'},
   ]
 
   return (
