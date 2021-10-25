@@ -1,0 +1,31 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.button {
+  margin-top: 100px;
+  border: 1px solid black;
+  background: transparent;
+  cursor: pointer;
+  padding: 20px 30px;
+  font-size: 30px;
+  border-radius: 10px;
+  transition: .4s;
+}
+
+.button:hover {
+  border: 1px solid whitesmoke;
+  background: black;
+  color: whitesmoke;
+}
+
+.text {
+  font-size: 20px;
+}
+
+.header {
+  font-size: 38px;
+}

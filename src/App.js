@@ -1,16 +1,17 @@
 import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
-import { About, Home, APITodos, TodosWrapper } from './pages'
+import { About, Home, TodosWrapper } from './pages'
 import { Notification, NavBar } from './components'
+import style from './style.module.css'
 
 const App = () => {
   const routesConfig = [
     {key: 1, path: '/', exact: true, component: Home },
     {key: 2, path: '/todos', component: TodosWrapper},
     {key: 3, path: '/about', component: About},
-    {key: 4, path: '/APITodos', component: APITodos},
   ]
 
   return (
+    <div className={style.wrapper}>
       <BrowserRouter>
         <Notification>
           <NavBar />
@@ -20,6 +21,7 @@ const App = () => {
           </Switch>
         </Notification>
       </BrowserRouter>
+    </div>
   )
 }
 
