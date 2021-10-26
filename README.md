@@ -10,9 +10,9 @@
     <span>With this app, you can plan your day and handle important tasks.</span>
     <h1>Possibilities</h1>
     <ul>
-        <li>First of all you can add or delete task.</li>
-        <li>You can filter you tasks by All in row, Done tasks and Active tasks.</li>
-        <li>If you want to see more info about your task, you can click action 'More info'.</li>
+        <li>Manage your tasks (Create and Delete).</li>
+        <li>Filter your tasks (All, Done, Active options are supported).</li>
+        <li>Click on 'more info' button in actions dropdown to see detailed view of the task.</li>
         <li>Your tasks are saved in Local Storage.</li>
     </ul>
 </div>
