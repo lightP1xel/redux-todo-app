@@ -52,8 +52,12 @@ const createField = (name, label) => {
   )
 }
 
+  const handleClose = () => {
+    history.goBack()
+  }
+
   return (
-    <Modal title="Add todo" visible footer={<TodoModalFooter />}>
+    <Modal title="Add todo" visible footer={<TodoModalFooter />} onCancel={handleClose}>
       <Form onFinish={handleFinish} form={form}>
         {createField('title', 'Title')}
         {createField('description', 'Description')}
